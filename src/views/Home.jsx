@@ -1,4 +1,4 @@
-import React, { lazy, Component } from "react";
+import React, { lazy, Component, useState } from "react";
 import { Link } from "react-router-dom";
 import { data } from "../data";
 import { ReactComponent as IconLaptop } from "bootstrap-icons/icons/laptop.svg";
@@ -9,6 +9,7 @@ import { ReactComponent as IconDisplay } from "bootstrap-icons/icons/display.svg
 import { ReactComponent as IconHdd } from "bootstrap-icons/icons/hdd.svg";
 import { ReactComponent as IconUpcScan } from "bootstrap-icons/icons/upc-scan.svg";
 import { ReactComponent as IconTools } from "bootstrap-icons/icons/tools.svg";
+import { api } from "../services/api";
 
 const Support = lazy(() => import("../components/Support"));
 const Banner = lazy(() => import("../components/carousel/Banner"));
@@ -21,6 +22,12 @@ const CardDealsOfTheDay = lazy(() =>
 );
 
 class HomeView extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {products: null};
+  }
+  
   components = {
     IconLaptop: IconLaptop,
     IconHeadset: IconHeadset,
@@ -32,7 +39,18 @@ class HomeView extends Component {
     IconTools: IconTools,
   };
 
+  componentDidMount() {
+    api.get("/products?limit=20").then(res => {
+      this.setState({
+        products: res.data
+      })
+    })
+  }
+
   render() {
+
+    const products = this.state.products?.products;
+
     const iconProducts = data.iconProducts;
     const rows = [...Array(Math.ceil(iconProducts.length / 4))];
     // chunk the products into the array of rows
@@ -98,6 +116,18 @@ class HomeView extends Component {
         <div className="bg-info bg-gradient p-3 text-center mb-3">
           <h4 className="m-0">Explore Fashion Collection</h4>
         </div>
+
+        {console.log(products)}
+
+        {
+          products?.map(product => (
+            <React.Fragment key={product.id}>
+              <h1>{product.title}</h1>
+              <img src={product.images[0]} alt="" />
+              <span>{product.price}</span>
+            </React.Fragment>
+          ))
+        }
         <div className="container">
           <div className="row">
             <div className="col-md-3">

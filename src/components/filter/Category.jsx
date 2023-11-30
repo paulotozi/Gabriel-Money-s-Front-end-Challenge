@@ -18,9 +18,9 @@ const FilterCategory = (props) => {
         id="filterCategory"
       >
         <li className="list-group-item">
-          <Link to="/" className="text-decoration-none stretched-link">
+           <button to="/" className="text-decoration-none stretched-link">
             Clothing
-          </Link>
+          </button>
         </li>
         <li className="list-group-item">
           <Link to="/" className="text-decoration-none stretched-link">

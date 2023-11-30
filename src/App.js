@@ -7,6 +7,7 @@ import TopMenu from "./components/TopMenu";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.min.css";
+import axios from "axios";
 //const Header = lazy(() => import("./components/Header"));
 //const TopMenu = lazy(() => import("./components/TopMenu"));
 const HomeView = lazy(() => import("./views/Home"));
@@ -32,6 +33,12 @@ const BlogView = lazy(() => import("./views/blog/Blog"));
 const BlogDetailView = lazy(() => import("./views/blog/Detail"));
 
 function App() {
+  
+  //const url = "https://dummyjson.com/products?limit=20" 
+  //url_json = axios.get(url)
+
+  //console.log(url_json)
+  
   return (
     <BrowserRouter>
       <React.Fragment>
@@ -79,5 +86,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;

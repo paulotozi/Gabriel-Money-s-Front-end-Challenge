@@ -1,8 +1,8 @@
 import { lazy } from "react";
 import { data } from "../../data";
-const CardFeaturedProduct = lazy(() =>
-  import("../../components/card/CardFeaturedProduct")
-);
+// const CardFeaturedProduct = lazy(() =>
+//   import("../../components/card/CardFeaturedProduct")
+// );
 const CardServices = lazy(() => import("../../components/card/CardServices"));
 const Details = lazy(() => import("../../components/others/Details"));
 const RatingsReviews = lazy(() =>
@@ -17,6 +17,7 @@ const ShippingReturns = lazy(() =>
 const SizeChart = lazy(() => import("../../components/others/SizeChart"));
 
 const ProductDetailView = () => {
+  
   return (
     <div className="container-fluid mt-3">
       <div className="row">
@@ -313,10 +314,10 @@ const ProductDetailView = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-4">
+        {/* <div className="col-md-4">
           <CardFeaturedProduct data={data.products} />
           <CardServices />
-        </div>
+        </div> */}
       </div>
     </div>
   );
