@@ -1,5 +1,6 @@
 import React, { lazy, Component } from "react";
 import { data } from "../../data";
+import { api } from "../../services/api.js"
 const Paging = lazy(() => import("../../components/Paging"));
 const Breadcrumb = lazy(() => import("../../components/Breadcrumb"));
 const FilterCategory = lazy(() => import("../../components/filter/Category"));
@@ -27,8 +28,14 @@ class ProductListView extends Component {
   };
 
   UNSAFE_componentWillMount() {
-    const totalItems = this.getProducts().length;
-    this.setState({ totalItems });
+    api.get("/products?limit=20").then(res => {
+      this.setState({
+        currentProducts: res.data.products, 
+        totalPages: 5,
+        totalItems: 20,
+      })
+    })
+
   }
 
   onPageChanged = (page) => {

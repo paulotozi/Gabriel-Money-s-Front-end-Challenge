@@ -1,5 +1,6 @@
-import { lazy } from "react";
-import { data } from "../../data";
+import { lazy, useState, useEffect } from "react";
+import { api } from "../../services/api";
+import { useParams } from "react-router-dom";
 // const CardFeaturedProduct = lazy(() =>
 //   import("../../components/card/CardFeaturedProduct")
 // );
@@ -16,8 +17,22 @@ const ShippingReturns = lazy(() =>
 );
 const SizeChart = lazy(() => import("../../components/others/SizeChart"));
 
+
+
 const ProductDetailView = () => {
-  
+  const [product, setProduct] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+     api.get(`products/${id}`).then(res => {
+
+       setProduct(res.data);
+       console.log(res.data)
+
+     })
+    console.log("oi")
+  }, [])
+
   return (
     <div className="container-fluid mt-3">
       <div className="row">
@@ -25,7 +40,7 @@ const ProductDetailView = () => {
           <div className="row mb-3">
             <div className="col-md-5 text-center">
               <img
-                src="../../images/products/tshirt_red_480x400.webp"
+                src={product?.images[0]}
                 className="img-fluid mb-3"
                 alt=""
               />

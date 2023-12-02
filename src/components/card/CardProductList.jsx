@@ -6,13 +6,13 @@ const CardProductList = (props) => {
     <div className="card">
       <div className="row g-0">
         <div className="col-md-3 text-center">
-          <img src={product.img} className="img-fluid" alt="..." />
+          <img src={product.thumbnail} className="img-fluid" alt="..." />
         </div>
         <div className="col-md-6">
           <div className="card-body">
             <h6 className="card-subtitle me-2 d-inline">
-              <Link to={product.link} className="text-decoration-none">
-                {product.name}
+              <Link to={`/product/detail/${product.id}`} className="text-decoration-none">
+                {product.title}
               </Link>
             </h6>
             {product.isNew && (
@@ -21,9 +21,9 @@ const CardProductList = (props) => {
             {product.isHot && <span className="badge bg-danger me-2">Hot</span>}
 
             <div>
-              {product.star > 0 &&
+              {product.rating > 0 &&
                 Array.from({ length: 5 }, (_, key) => {
-                  if (key <= product.star)
+                  if (key <= product.rating)
                     return (
                       <i
                         className="bi bi-star-fill text-warning me-1"
