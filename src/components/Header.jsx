@@ -37,11 +37,6 @@ const Header = () => {
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/account/profile">
-                    <i className="bi bi-person-square"></i> My Profile
-                  </Link>
-                </li>
-                <li>
                   <Link className="dropdown-item" to="/star/zone">
                     <i className="bi bi-star-fill text-warning"></i> Star Zone
                   </Link>
@@ -56,34 +51,8 @@ const Header = () => {
                     <i className="bi bi-heart-fill text-danger"></i> Wishlist
                   </Link>
                 </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/account/notification">
-                    <i className="bi bi-bell-fill text-primary"></i>
-                    Notification
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/support">
-                    <i className="bi bi-info-circle-fill text-success"></i>
-                    Support
-                  </Link>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    <i className="bi bi-door-closed-fill text-danger"></i>
-                    Logout
-                  </Link>
-                </li>
               </ul>
             </div>
-            {/* <Link to="/account/signin">Sign In</Link> |{" "}
-              <Link to="/account/signup"> Sign Up</Link> */}
           </div>
         </div>
       </div>
