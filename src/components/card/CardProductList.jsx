@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { WishlistContext } from "../../context/context";
 
 const CardProductList = (props) => {
+  const {setWishlist} = useContext(WishlistContext);
+
   const product = props.data;
   return (
     <div className="card">
@@ -89,6 +93,9 @@ const CardProductList = (props) => {
                 type="button"
                 className="btn btn-sm btn-outline-secondary"
                 title="Add to wishlist"
+                onClick={() => setWishlist((prevState = []) => {
+                  return [...prevState, product]
+                })}
               >
                 <i className="bi bi-heart-fill" />
               </button>

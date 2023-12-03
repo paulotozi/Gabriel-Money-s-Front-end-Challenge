@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState, useMemo } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.min.css";
 import axios from "axios";
+import { WishlistContext } from "./context/context";
 //const Header = lazy(() => import("./components/Header"));
 //const TopMenu = lazy(() => import("./components/TopMenu"));
 const HomeView = lazy(() => import("./views/Home"));
@@ -33,7 +34,14 @@ const BlogView = lazy(() => import("./views/blog/Blog"));
 const BlogDetailView = lazy(() => import("./views/blog/Detail"));
 
 function App() {
-  
+
+  const [wishlist, setWishlist] = useState();
+  const value = useMemo(
+
+    () => ({wishlist, setWishlist})
+
+  )
+
   //const url = "https://dummyjson.com/products?limit=20" 
   //url_json = axios.get(url)
 
@@ -41,9 +49,10 @@ function App() {
   
   return (
     <BrowserRouter>
+    
       <React.Fragment>
+        <WishlistContext.Provider value={value}>
         <Header />
-        <TopMenu />
         <Suspense
           fallback={
             <div className="text-white text-center mt-3">Loading...</div>
@@ -81,8 +90,11 @@ function App() {
             <Route path="*" element={<NotFoundView/>} />
           </Routes>
         </Suspense>
-        <Footer />
+        <Footer /> 
+        </WishlistContext.Provider>
       </React.Fragment>
+   
+      
     </BrowserRouter>
   );
 }
